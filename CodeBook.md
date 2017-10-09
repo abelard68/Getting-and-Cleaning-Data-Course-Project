@@ -5,6 +5,7 @@ This code book describes the variables, the data, and any transformations or wor
 ## The Data Source
 
 The data set and its description can be obtained from:
+
 	* Original Data: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 	* Original Description of the Dataset: http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
 
@@ -13,13 +14,21 @@ The data set and its description can be obtained from:
 Human Activity Recognition database built from the recordings of 30 subjects performing activities of daily living (ADL) while carrying a waist-mounted smartphone with embedded inertial sensors.
 
 Data Set Characteristics:	Multivariate, Time-Series
+
 Attribute Characteristics:	N/A
+
 Associated Tasks:			Classification, Clustering
+
 Number of Instances:		10299
+
 Number of Attributes:		561
+
 Missing Values?				N/A
+
 Area:						Computer
+
 Date Donated:				2012-12-10
+
 Number of Web Hits:			536507
 
  
