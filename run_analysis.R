@@ -28,16 +28,16 @@ run_analysis <- function() {
   ##  ------------------------------------------------------------------------------------------------------------------------------------------------
   ##  imports lookup data
   ##  ------------------------------------------------------------------------------------------------------------------------------------------------
-  activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2]        ## import activity labels.
-  features <- read.table("./UCI HAR Dataset/features.txt")[,2]                      ## import data column names.
+  activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt", header = FALSE)[,2]        ## import activity labels.
+  features <- read.table("./UCI HAR Dataset/features.txt", header = FALSE)[,2]                      ## import data column names.
   extract_features <- grepl("mean|std", features)                                   ## mask to extract only the mean and standard deviation for each measurement.
   
   ##  ------------------------------------------------------------------------------------------------------------------------------------------------
   ##  imports and processes test data
   ##  ------------------------------------------------------------------------------------------------------------------------------------------------
-  X_test <- read.table("./UCI HAR Dataset/test/X_test.txt")                         ## import X_test data.
-  y_test <- read.table("./UCI HAR Dataset/test/y_test.txt")                         ## import y_test data.
-  subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt")             ## import subject_test data.
+  X_test <- read.table("./UCI HAR Dataset/test/X_test.txt", header = FALSE)                         ## import X_test data.
+  y_test <- read.table("./UCI HAR Dataset/test/y_test.txt", header = FALSE)                         ## import y_test data.
+  subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt", header = FALSE)             ## import subject_test data.
   names(X_test) <- features                                                         ## set the names of x_test data frame
   X_test = X_test[,extract_features]                                                ## only considering the the extract_features(mean & std)
   y_test[,2] = activity_labels[y_test[,1]]                                          ## creates new column on y_test
@@ -49,9 +49,9 @@ run_analysis <- function() {
   ##  ------------------------------------------------------------------------------------------------------------------------------------------------
   ##  imports and processes train data
   ##  ------------------------------------------------------------------------------------------------------------------------------------------------
-  X_train <- read.table("./UCI HAR Dataset/train/X_train.txt")                      ## import X_train data.
-  y_train <- read.table("./UCI HAR Dataset/train/y_train.txt")                      ## import y_train data.
-  subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")          ## import subject_train data.
+  X_train <- read.table("./UCI HAR Dataset/train/X_train.txt", header = FALSE)                      ## import X_train data.
+  y_train <- read.table("./UCI HAR Dataset/train/y_train.txt", header = FALSE)                      ## import y_train data.
+  subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt", header = FALSE)    ## import subject_train data.
   names(X_train) = features                                                         ## set the names of x_train data frame
   X_train = X_train[,extract_features]                                              ## only considering the the extract_features(mean & std)
   y_train[,2] = activity_labels[y_train[,1]]                                        ## creates new column in y_train
@@ -69,5 +69,5 @@ run_analysis <- function() {
   melt_data      = melt(merged_data, id = id_labels, measure.vars = data_labels)    ## melts a data frame with id_lables as identifier variables and data_labels as measured variables
   final_data_set   = dcast(melt_data, subject + ActivityLabel ~ variable, mean)     ## using dcast function to apply mean function to melt_data returning the final data set
   
-  write.table(final_data_set, file = "./analysis.txt")                              ##  writes final data set to working directory
+  write.table(final_data_set, file = "./analysis.txt", row.names = FALSE)          ##  writes final data set to working directory
 }
